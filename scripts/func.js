@@ -17,7 +17,7 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase()
     let score_arr = [0, 0]; // player : computer scores
-
+    console.log(playerSelection);
     // one round of RPS
     if(playerSelection == ROCK){
         if(computerSelection == SCISSOR){
@@ -47,27 +47,46 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function game(){
+function game(button){
 
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++){
-        let playerMove = prompt("Your move");
-        let computerMove = computerPlay();
 
-        let score_one_round = playRound(playerMove, computerMove);
-        playerScore += score_one_round[0];
-        computerScore += score_one_round[1];
-        console.log(`Player ${playerScore} : computer ${computerScore}`);
+    
+    let playerMove = button.name;
+    let computerMove = computerPlay();
+
+    let score_one_round = playRound(playerMove, computerMove);
+    playerScore += score_one_round[0];
+    computerScore += score_one_round[1];
+    let displayResult = `Player ${playerScore} : computer ${computerScore}`;
+    
+    //announce winner
+
+    if (playerScore >= 5){
+        displayResult += "\nYOU WIN";
     }
-    if (playerScore > computerScore){
-        console.log("YOU WIN");
-    }
-    else if (playerScore < computerScore)
-        console.log("I WIN");
-    else 
-        console.log("TIE");
+    else if (computerScore >=5)
+        displayResult += "\nI WIN";
 
+    
+    // display results in a new div
+    const mainDiv = document.querySelector('#main');
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.textContent = displayResult;
+    mainDiv.appendChild(content);
+
+    
 }
 
-game();
+// global score
+let playerScore = 0;
+let computerScore = 0;
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+
+    // and for each one we add a 'click' listener
+    //button.addEventListener('click', function(){playRound(button.name, computerPlay())});
+    button.addEventListener('click', function(){game(button)});
+});
