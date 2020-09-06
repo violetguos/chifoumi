@@ -1,6 +1,7 @@
 :root {
   --main-width: 700px;
   --buttons-height: 50px;
+  --buttons-font: 32px;
 }
 
 body {
@@ -11,30 +12,27 @@ body {
 
 .center {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: space-between;
   height: var(--buttons-height);
-  border: 3px solid green;
 }
 
-.score,
-.result {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 50%;
-
-  border: 3px solid green;
+button {
+  font-size: var(--buttons-font);
 }
 
 @media (max-width: 700px) {
   :root {
     --main-width: 95%;
+    --buttons-height: 60px;
+    --buttons-font: 24px;
   }
 }
 
 @media (max-width: 500px) {
   :root {
     --main-width: 95%;
+    --buttons-height: 50px;
+    --buttons-font: 14px;
   }
 }

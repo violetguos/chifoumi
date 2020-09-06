@@ -66,8 +66,8 @@ function game(button) {
   //announce winner
 
   if (playerScore >= 5) {
-    displayResult += "\r\nYOU WIN";
-  } else if (computerScore >= 5) displayResult += "\r\nI WIN";
+    displayResult += "\r\nComputer: YOU WIN";
+  } else if (computerScore >= 5) displayResult += "\r\nComputer: I WIN";
 
   // display results in a new div
   const mainDiv = document.querySelector("#main");
